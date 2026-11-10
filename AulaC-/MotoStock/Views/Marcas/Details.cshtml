@@ -1,0 +1,70 @@
+@model MotoStock.Models.Marca
+
+@{
+    ViewData["Title"] = "Detalhes da Marca";
+}
+
+<style>
+    .detalhes-marca {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .detalhes-marca h2 {
+        color: #f1c40f;
+    }
+    .info-item {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #e74c3c;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="detalhes-marca">
+        <h2>🏭 Detalhes da Marca: @Html.DisplayFor(model => model.Nome)</h2>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="info-item">
+                    <strong>📛 Nome:</strong> @Html.DisplayFor(model => model.Nome)<br>
+                    <strong>🌍 País de Origem:</strong> @Html.DisplayFor(model => model.PaisOrigem)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-item">
+                    <strong>📝 Descrição:</strong> @Html.DisplayFor(model => model.Descricao)<br>
+                    <strong>⚡ Estado:</strong> @(Model.Ativo ? "Ativa ✅" : "Inativa ❌")
+                </div>
+            </div>
+        </div>
+
+        <div class="piada-marca mt-4">
+            <strong>😂 Piada:</strong><br>
+            O que é que uma marca de motas diz à outra?<br>
+            "Tu és fixe, mas eu sou a original!"
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">✏️ Editar Marca</a>
+            <a class="btn btn-outline-light" asp-action="Index">⬅️ Voltar à Lista</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .piada-marca {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+        max-width: 500px;
+    }
+</style>

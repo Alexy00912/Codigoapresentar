@@ -1,0 +1,115 @@
+@model IEnumerable<MotoStock.Models.MovimentoStock>
+
+@{
+    ViewData["Title"] = "Entradas & Saídas";
+}
+
+<style>
+    .movimento-card {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 15px;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    .movimento-card h2 {
+        color: #f1c40f;
+        margin-bottom: 0.5rem;
+    }
+    .btn-movimento {
+        background: linear-gradient(45deg, #e74c3c, #c0392b);
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        padding: 0.75rem 2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .btn-movimento:hover {
+        transform: scale(1.05);
+    }
+    .piada-movimento {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+    }
+    .vazio-card {
+        background: #f8f9fa;
+        border: 2px dashed #e67e22;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+    }
+    .tipo-entrada { color: #27ae60; font-weight: bold; }
+    .tipo-saida { color: #c0392b; font-weight: bold; }
+    .tipo-reserva { color: #f39c12; font-weight: bold; }
+    .tipo-cancelamento { color: #7f8c8d; font-weight: bold; }
+</style>
+
+<div class="container mt-4">
+    <div class="piada-movimento">
+        <strong>😂 Piada do movimento:</strong><br>
+        Por que é que o movimento de stock é tão indeciso?<br>
+        Porque não sabe se entra ou sai! 🔄
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="movimento-card" style="display:inline-block;">
+            <h2>📦 Entradas & Saídas de Stock</h2>
+        </div>
+        <a class="btn btn-movimento" asp-action="Create">➕ Novo Movimento</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="vazio-card">
+            <h3>😅 Ainda não há movimentos de stock!</h3>
+            <p class="lead">O armazém está parado. Vamos registar a primeira entrada ou saída!</p>
+            <a class="btn btn-movimento" asp-action="Create">Registar Primeiro Movimento</a>
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Mota</th>
+                    <th>Tipo</th>
+                    <th>Data</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Motivo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Motocicleta.Modelo)</td>
+                        <td class="@($"tipo-{item.TipoMovimento.ToString().ToLower()}")">@item.TipoMovimento</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataMovimento)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantidade)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Preco) €</td>
+                        <td>@Html.DisplayFor(modelItem => item.Motivo)</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.Id">🔍 Detalhes</a>
+                            <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id">✏️ Editar</a>
+                            <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">🗑️ Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div class="text-center mt-4">
+        <a class="btn btn-outline-warning" asp-action="Index" asp-controller="Home">⬅️ Voltar à Garagem</a>
+    </div>
+</div>

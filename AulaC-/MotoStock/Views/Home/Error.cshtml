@@ -1,0 +1,60 @@
+@model MotoStock.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Erro!";
+}
+
+<style>
+    .erro-card {
+        background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        text-align: center;
+        border: 4px solid #000;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+    .erro-card h1 {
+        color: #fff;
+        font-size: 5rem;
+        margin-bottom: 1rem;
+        text-shadow: 3px 3px 6px #000;
+    }
+    .moto-chorosa {
+        font-size: 5rem;
+        display: block;
+        margin-bottom: 1rem;
+    }
+    .btn-volta {
+        background: #f1c40f;
+        color: #000;
+        border: none;
+        border-radius: 30px;
+        padding: 1rem 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-top: 1rem;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="erro-card">
+        <div class="moto-chorosa">😭</div>
+        <h1>Erro! 🏍️💥</h1>
+        <p class="lead">Desculpa, aconteceu um problema aqui na oficina.</p>
+        <p class="fst-italic">A mota deu um trambolhão e nós ainda vamos buscar as peças!</p>
+        
+        @if (Model != null && !string.IsNullOrEmpty(Model.RequestId))
+        {
+            <p><small>ID do erro: @Model.RequestId</small></p>
+        }
+
+        <div class="mt-4">
+            <a class="btn-volta" asp-action="Index">⬅️ Voltar à Garagem</a>
+        </div>
+    </div>
+
+    <div class="text-center mt-4 text-muted small">
+        Piada para desculpar: Por que é que as motas não choram? Porque já têm bastante óleo!
+    </div>
+</div>

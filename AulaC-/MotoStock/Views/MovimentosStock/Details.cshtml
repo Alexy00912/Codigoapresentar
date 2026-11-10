@@ -1,0 +1,78 @@
+@model MotoStock.Models.MovimentoStock
+
+@{
+    ViewData["Title"] = "Detalhes do Movimento";
+}
+
+<style>
+    .detalhes-movimento {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .detalhes-movimento h2 {
+        color: #f1c40f;
+    }
+    .info-item {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #e74c3c;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="detalhes-movimento">
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="info-item">
+                    <strong>🏍️ Motocicleta:</strong> @Html.DisplayFor(model => model.Motocicleta.Modelo)<br>
+                    <strong>🔄 Tipo de Movimento:</strong> @Model.TipoMovimento<br>
+                    <strong>📅 Data:</strong> @Html.DisplayFor(model => model.DataMovimento)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-item">
+                    <strong>🔢 Quantidade:</strong> @Html.DisplayFor(model => model.Quantidade)<br>
+                    <strong>💰 Preço:</strong> @Html.DisplayFor(model => model.Preco) €<br>
+                    <strong>📝 Motivo:</strong> @Html.DisplayFor(model => model.Motivo)
+                </div>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.Observacoes))
+        {
+            <div class="info-item mt-3">
+                <strong>🗒️ Observações:</strong> @Html.DisplayFor(model => model.Observacoes)
+            </div>
+        }
+
+        <div class="piada-movimento mt-4">
+            <strong>😂 Piada:</strong><br>
+            O que é que um movimento de stock diz à mota?<br>
+            "Entra ou sai, escolhe já!" 😄
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">✏️ Editar Movimento</a>
+            <a class="btn btn-outline-light" asp-action="Index">⬅️ Voltar à Lista</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .piada-movimento {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+        max-width: 500px;
+    }
+</style>

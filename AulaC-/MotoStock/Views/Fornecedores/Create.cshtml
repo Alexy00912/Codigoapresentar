@@ -1,0 +1,126 @@
+@model MotoStock.ViewModels.FornecedorViewModel
+
+@{
+    ViewData["Title"] = "Criar Novo Fornecedor";
+}
+
+<style>
+    .criar-fornecedor {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .criar-fornecedor h2 {
+        color: #f1c40f;
+    }
+    .form-control {
+        background: rgba(255,255,255,0.9);
+        border: none;
+        border-radius: 8px;
+    }
+    .btn-criar {
+        background: linear-gradient(45deg, #27ae60, #2ecc71);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 1rem 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .btn-criar:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="criar-fornecedor">
+        <h2>➕ Criar Novo Fornecedor de Motas</h2>
+        <p class="fst-italic">Vamos cadastrar quem nos vende as motas!</p>
+
+        <div class="piada-fornecedor mb-4">
+            <strong>😂 Dica:</strong> Escolha um fornecedor que não vos deixe a pé!
+        </div>
+
+        <form asp-action="Create" class="needs-validation" novalidate>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label asp-for="Nome" class="form-label fw-bold">Nome do Fornecedor <span class="text-danger">*</span></label>
+                    <input asp-for="Nome" class="form-control" placeholder="Ex: MotoParts Lda." />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label asp-for="NIF" class="form-label fw-bold">NIF <span class="text-danger">*</span></label>
+                    <input asp-for="NIF" class="form-control" placeholder="Ex: 123456789" />
+                    <span asp-validation-for="NIF" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label asp-for="Email" class="form-label fw-bold">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="exemplo@fornecedor.pt" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label asp-for="Telefone" class="form-label fw-bold">Telefone</label>
+                    <input asp-for="Telefone" class="form-control" placeholder="Ex: 912345678" />
+                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Morada" class="form-label fw-bold">Morada</label>
+                <input asp-for="Morada" class="form-control" placeholder="Rua das Motas, 123" />
+                <span asp-validation-for="Morada" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label asp-for="CodigoPostal" class="form-label fw-bold">Código Postal</label>
+                    <input asp-for="CodigoPostal" class="form-control" placeholder="1234-567" />
+                    <span asp-validation-for="CodigoPostal" class="text-danger"></span>
+                </div>
+                <div class="col-md-8 mb-4">
+                    <label asp-for="Localidade" class="form-label fw-bold">Localidade</label>
+                    <input asp-for="Localidade" class="form-control" placeholder="Lisboa" />
+                    <span asp-validation-for="Localidade" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="DataRegisto" class="form-label fw-bold">Data de Registo <span class="text-danger">*</span></label>
+                <input asp-for="DataRegisto" class="form-control" type="date" />
+                <span asp-validation-for="DataRegisto" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4 form-check">
+                <input asp-for="Ativo" class="form-check-input" />
+                <label asp-for="Ativo" class="form-check-label fw-bold">Fornecedor Ativo?</label>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn-criar">💾 Criar Fornecedor</button>
+                <a class="btn btn-outline-light" asp-action="Index">❌ Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .piada-fornecedor {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+        max-width: 500px;
+    }
+</style>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

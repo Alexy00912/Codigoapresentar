@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Sobre Nós";
+}
+
+<style>
+    .sobre-card {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .sobre-card h1 {
+        color: #f1c40f;
+    }
+    .piada-mota {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 1rem;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="sobre-card">
+        <h1>Sobre Nós 🏍️</h1>
+        <p>Somos o <strong>MotoStock</strong>, a aplicação que gere motas, marcas, categorias, fornecedores e movimentos de stock.</p>
+        <p>A nossa missão é simples: garantir que nenhuma mota fique esquecida no canto do armazém a acumular pó.</p>
+        
+        <div class="piada-mota">
+            <strong>😂 Piada do dia:</strong><br>
+            Por que é que as motas não usam relógio?<br>
+            Porque já têm conta-kilómetros!
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">🛠️ O que fazemos</h5>
+                        <p class="card-text">Gerimos o inventário de motociclos de forma séria (mas não demasiado).</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-warning text-dark">
+                    <div class="card-body">
+                        <h5 class="card-title">📦 O que guardamos</h5>
+                        <p class="card-text">Motas, marcas, categorias, fornecedores e tudo o que entre e saia do stock.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-body">
+                        <h5 class="card-title">🏍️ O que amamos</h5>
+                        <p class="card-text">O cheiro a gasolina, o som do motor e uma boa voltinha ao domingo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a class="btn btn-warning" asp-action="Index">⬅️ Voltar à Garagem</a>
+    </div>
+</div>

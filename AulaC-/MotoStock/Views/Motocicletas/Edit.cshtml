@@ -1,0 +1,191 @@
+@model MotoStock.ViewModels.MotocicletaViewModel
+
+@{
+    ViewData["Title"] = "Editar Motocicleta";
+}
+
+<style>
+    .editar-moto {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .editar-moto h2 {
+        color: #f1c40f;
+    }
+    .form-control, .form-select {
+        background: rgba(255,255,255,0.9);
+        border: none;
+        border-radius: 8px;
+    }
+    .btn-guardar {
+        background: linear-gradient(45deg, #f39c12, #e67e22);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 1rem 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .btn-guardar:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="editar-moto">
+        <h2>✏️ Editar Motocicleta</h2>
+        <p class="fst-italic">Vamos atualizar os dados desta mota!</p>
+
+        <div class="piada-moto mb-4">
+            <strong>😂 Piada:</strong><br>
+            Por que é que as motas nunca se perdem?<br>
+            Porque têm GPS no guidão! 🗺️
+        </div>
+
+        <form asp-action="Edit" class="needs-validation" novalidate>
+            <input asp-for="Id" type="hidden" />
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label asp-for="MarcaId" class="form-label fw-bold">Marca <span class="text-danger">*</span></label>
+                    <select asp-for="MarcaId" asp-items="Model.Marcas" class="form-select"></select>
+                    <span asp-validation-for="MarcaId" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="CategoriaId" class="form-label fw-bold">Categoria <span class="text-danger">*</span></label>
+                    <select asp-for="CategoriaId" asp-items="Model.Categorias" class="form-select"></select>
+                    <span asp-validation-for="CategoriaId" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="FornecedorId" class="form-label fw-bold">Fornecedor <span class="text-danger">*</span></label>
+                    <select asp-for="FornecedorId" asp-items="Model.Fornecedores" class="form-select"></select>
+                    <span asp-validation-for="FornecedorId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label asp-for="Modelo" class="form-label fw-bold">Modelo <span class="text-danger">*</span></label>
+                    <input asp-for="Modelo" class="form-control" />
+                    <span asp-validation-for="Modelo" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="Cilindrada" class="form-label fw-bold">Cilindrada (cc) <span class="text-danger">*</span></label>
+                    <input asp-for="Cilindrada" class="form-control" />
+                    <span asp-validation-for="Cilindrada" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="Ano" class="form-label fw-bold">Ano <span class="text-danger">*</span></label>
+                    <input asp-for="Ano" class="form-control" />
+                    <span asp-validation-for="Ano" class="text-danger"></span>
+                </div>
+            </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Cor" class="form-label"></label>
+                            <input asp-for="Cor" class="form-control" />
+                            <span asp-validation-for="Cor" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="Matricula" class="form-label"></label>
+                            <input asp-for="Matricula" class="form-control" />
+                            <span asp-validation-for="Matricula" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="NumeroQuadro" class="form-label"></label>
+                            <input asp-for="NumeroQuadro" class="form-control" />
+                            <span asp-validation-for="NumeroQuadro" class="text-danger"></span>
+                        </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label asp-for="Cor" class="form-label fw-bold">Cor <span class="text-danger">*</span></label>
+                    <input asp-for="Cor" class="form-control" />
+                    <span asp-validation-for="Cor" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="Matricula" class="form-label fw-bold">Matrícula</label>
+                    <input asp-for="Matricula" class="form-control" />
+                    <span asp-validation-for="Matricula" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="NumeroQuadro" class="form-label fw-bold">Nº Quadro <span class="text-danger">*</span></label>
+                    <input asp-for="NumeroQuadro" class="form-control" />
+                    <span asp-validation-for="NumeroQuadro" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label asp-for="Quilometragem" class="form-label fw-bold">Quilometragem <span class="text-danger">*</span></label>
+                    <input asp-for="Quilometragem" class="form-control" />
+                    <span asp-validation-for="Quilometragem" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="TipoMotor" class="form-label fw-bold">Tipo de Motor <span class="text-danger">*</span></label>
+                    <input asp-for="TipoMotor" class="form-control" />
+                    <span asp-validation-for="TipoMotor" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="DataRegisto" class="form-label fw-bold">Data de Registo <span class="text-danger">*</span></label>
+                    <input asp-for="DataRegisto" class="form-control" type="date" />
+                    <span asp-validation-for="DataRegisto" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label asp-for="PrecoCompra" class="form-label fw-bold">Preço de Compra (€) <span class="text-danger">*</span></label>
+                    <input asp-for="PrecoCompra" class="form-control" />
+                    <span asp-validation-for="PrecoCompra" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="PrecoVenda" class="form-label fw-bold">Preço de Venda (€) <span class="text-danger">*</span></label>
+                    <input asp-for="PrecoVenda" class="form-control" />
+                    <span asp-validation-for="PrecoVenda" class="text-danger"></span>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <label asp-for="Estado" class="form-label fw-bold">Estado <span class="text-danger">*</span></label>
+                    <select asp-for="Estado" class="form-select">
+                        @foreach (var e in Enum.GetValues(typeof(MotoStock.Models.Enums.EstadoMotocicleta)).Cast<MotoStock.Models.Enums.EstadoMotocicleta>())
+                        {
+                            <option value="@((int)e)">@e</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Estado" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label asp-for="Descricao" class="form-label fw-bold">Descrição</label>
+                <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="Observacoes" class="form-label fw-bold">Observações</label>
+                <textarea asp-for="Observacoes" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Observacoes" class="text-danger"></span>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn-guardar">💾 Guardar Alterações</button>
+                <a class="btn btn-outline-light" asp-action="Index">❌ Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .piada-moto {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+        max-width: 500px;
+    }
+</style>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+                    </div>

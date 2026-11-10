@@ -1,0 +1,99 @@
+@{
+    ViewData["Title"] = "Bem-vindo à Garagem";
+}
+
+<style>
+    .garagem-hero {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        margin-bottom: 2rem;
+        border: 4px solid #e94560;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+    .garagem-hero h1 {
+        color: #e94560;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    .moto-emoji {
+        font-size: 4rem;
+        animation: @@keyframes moto-bounce 2s infinite ease-in-out;
+        display: inline-block;
+    }
+    @@keyframes moto-bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+    .info-card {
+        background: #0f3460;
+        color: #fff;
+        border: 2px solid #e94560;
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    .btn-laranja {
+        background: linear-gradient(45deg, #e94560, #c0392b);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 1rem 2.5rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        transition: all 0.3s;
+    }
+    .btn-laranja:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(233, 69, 96, 0.5);
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="garagem-hero text-center">
+        <div class="moto-emoji">🏍️</div>
+        <h1>Bem-vindo à Garagem MotoStock!</h1>
+        <p class="lead">O sítio onde gerimos motas como se não houvesse amanhã.</p>
+        <p class="fst-italic">Aqui não vendemos sonhos, vendemos motas. E gerimos o stock delas com todo o carinho.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="info-card text-center">
+                <h3>📊 As Nossas Motas</h3>
+                <p>Quer ver quantas motas temos no armazém? Vá ver o inventário!</p>
+                <a class="btn btn-outline-warning" asp-controller="Motocicletas" asp-action="Index">Ver Motas 🏍️</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-card text-center">
+                <h3>🏭 Marcas</h3>
+                <p>Yamaha, Honda, KTM... queremos todas as marcas fixas!</p>
+                <a class="btn btn-outline-warning" asp-controller="Marcas" asp-action="Index">Ver Marcas</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-card text-center">
+                <h3>🛠️ Pit Stop</h3>
+                <p>Precisa de descansar? Vá ao nosso espaço de humor duvidoso.</p>
+                <a class="btn btn-outline-warning" asp-controller="Home" asp-action="PitStop">Ir ao Pit Stop</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <strong>💡 Dica de ouro:</strong> Nunca deixes a mota sem travão de mão, senão ela vai visitar o vizinho sozinha... e não te devolve o que te emprestou!
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a class="btn-laranja" asp-controller="Motocicletas" asp-action="Create">
+            ➕ Registar Nova Mota
+        </a>
+    </div>
+</div>

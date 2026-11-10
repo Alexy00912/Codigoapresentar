@@ -1,0 +1,95 @@
+@model MotoStock.ViewModels.MarcaViewModel
+
+@{
+    ViewData["Title"] = "Criar Nova Marca";
+}
+
+<style>
+    .criar-marca {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .criar-marca h2 {
+        color: #f1c40f;
+    }
+    .form-control {
+        background: rgba(255,255,255,0.9);
+        border: none;
+        border-radius: 8px;
+    }
+    .btn-criar {
+        background: linear-gradient(45deg, #27ae60, #2ecc71);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 1rem 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .btn-criar:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="criar-marca">
+        <h2>➕ Criar Nova Marca de Mota</h2>
+        <p class="fst-italic">Vamos dar um nome fixe a esta marca!</p>
+
+        <div class="piada-marca mb-4">
+            <strong>😂 Dica:</strong> Escolha um nome que faça as pessoas quererem comprar uma mota só por causa da marca!
+        </div>
+
+        <form asp-action="Create" class="needs-validation" novalidate>
+            <div class="mb-4">
+                <label asp-for="Nome" class="form-label fw-bold">Nome da Marca <span class="text-danger">*</span></label>
+                <input asp-for="Nome" class="form-control" placeholder="Ex: Yamaha, Honda, KTM..." />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label asp-for="PaisOrigem" class="form-label fw-bold">País de Origem</label>
+                    <input asp-for="PaisOrigem" class="form-control" placeholder="Ex: Japão, Itália, Áustria..." />
+                    <span asp-validation-for="PaisOrigem" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Descricao" class="form-label fw-bold">Descrição da Marca</label>
+                <textarea asp-for="Descricao" class="form-control" rows="3" placeholder="Conte-nos tudo sobre esta marca..."></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4 form-check">
+                <input asp-for="Ativo" class="form-check-input" />
+                <label asp-for="Ativo" class="form-check-label fw-bold">Marca Ativa?</label>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn-criar">💾 Criar Marca</button>
+                <a class="btn btn-outline-light" asp-action="Index">❌ Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .piada-marca {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+        max-width: 500px;
+    }
+</style>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

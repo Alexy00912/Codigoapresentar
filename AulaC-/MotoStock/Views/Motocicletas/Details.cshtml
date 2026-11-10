@@ -1,0 +1,141 @@
+@model MotoStock.Models.Motocicleta
+
+@{
+    ViewData["Title"] = "Detalhes da Motocicleta";
+}
+
+<style>
+    .detalhes-moto {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .detalhes-moto h2 {
+        color: #f1c40f;
+    }
+    .info-item {
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-left: 4px solid #e74c3c;
+    }
+    .estado-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: bold;
+        color: #fff;
+        font-size: 1.1rem;
+    }
+    .estado-disponivel { background: #27ae60; }
+    .estado-reservada { background: #f39c12; }
+    .estado-vendida { background: #c0392b; }
+    .estado-preparacao { background: #3498db; }
+    .estado-indisponivel { background: #7f8c8d; }
+</style>
+
+<div class="container mt-4">
+    <div class="detalhes-moto">
+        <h2>🏍️ Detalhes da Motocicleta: @Html.DisplayFor(model => model.Modelo)</h2>
+        
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="info-item">
+                    <strong>🏭 Marca:</strong> @Html.DisplayFor(model => model.Marca.Nome)<br>
+                    <strong>📂 Categoria:</strong> @Html.DisplayFor(model => model.Categoria.Nome)<br>
+                    <strong>🚚 Fornecedor:</strong> @Html.DisplayFor(model => model.Fornecedor.Nome)<br>
+                    <strong>📅 Ano:</strong> @Html.DisplayFor(model => model.Ano)<br>
+                    <strong>🎨 Cor:</strong> @Html.DisplayFor(model => model.Cor)<br>
+                    <strong>🔢 Nº Quadro:</strong> @Html.DisplayFor(model => model.NumeroQuadro)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="info-item">
+                    <strong>🔋 Cilindrada:</strong> @Html.DisplayFor(model => model.Cilindrada) cc<br>
+                    <strong>⚙️ Tipo Motor:</strong> @Html.DisplayFor(model => model.TipoMotor)<br>
+                    <strong>🛣️ Quilometragem:</strong> @Html.DisplayFor(model => model.Quilometragem) km<br>
+                    <strong>📋 Matrícula:</strong> @Html.DisplayFor(model => model.Matricula)<br>
+                    <strong>💰 Preço Compra:</strong> @Html.DisplayFor(model => model.PrecoCompra) €<br>
+                    <strong>💸 Preço Venda:</strong> @Html.DisplayFor(model => model.PrecoVenda) €<br>
+                    <strong>📅 Data Registo:</strong> @Html.DisplayFor(model => model.DataRegisto)<br>
+                    <strong>⚡ Estado:</strong> 
+                    <span class="estado-badge @($"estado-{Model.Estado.ToString().ToLower()}")">@Model.Estado</span>
+                </div>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.Descricao))
+        {
+            <div class="info-item mt-3">
+                <strong>📝 Descrição:</strong> @Html.DisplayFor(model => model.Descricao)
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Observacoes))
+        {
+            <div class="info-item mt-3">
+                <strong>🗒️ Observações:</strong> @Html.DisplayFor(model => model.Observacoes)
+            </div>
+        }
+
+        <div class="piada-moto mt-4">
+            <strong>😂 Piada:</strong><br>
+            O que é que uma mota diz à outra no parque?<br>
+            "Vamos dar uma volta?". E "Não, eu menos que tu! Afinal tenho mais 200cc!" 🏍️💨
+        </div>
+
+        <div class="mt-4">
+            <h4>📦 Movimentos de Stock</h4>
+            @if (Model.MovimentosStock != null && Model.MovimentosStock.Any())
+            {
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Data</th>
+                            <th>Quantidade</th>
+                            <th>Preço</th>
+                            <th>Motivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var mv in Model.MovimentosStock.OrderByDescending(m => m.DataMovimento))
+                        {
+                            <tr>
+                                <td>@mv.TipoMovimento</td>
+                                <td>@mv.DataMovimento.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@mv.Quantidade</td>
+                                <td>@mv.Preco €</td>
+                                <td>@mv.Motivo</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-muted">Sem movimentos de stock registados para esta mota.</p>
+            }
+        </div>
+
+        <div class="d-grid gap-2 mt-4">
+            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">✏️ Editar Motocicleta</a>
+            <a class="btn btn-outline-light" asp-action="Index">⬅️ Voltar à Lista</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .piada-moto {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+        max-width: 500px;
+    }
+</style>

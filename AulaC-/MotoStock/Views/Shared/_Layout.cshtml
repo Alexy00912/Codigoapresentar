@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MotoStock</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MotoStock.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark border-bottom mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand text-warning" asp-area="" asp-controller="Home" asp-action="Index">🏍️ MotoStock</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Garagem</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre Nós</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-warning" asp-area="" asp-controller="Home" asp-action="PitStop">🛠️ Pit Stop</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Motocicletas" asp-action="Index">As Nossas Motas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Marcas" asp-action="Index">Marcas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Fornecedores" asp-action="Index">Fornecedores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="MovimentosStock" asp-action="Index">Entradas & Saídas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted bg-dark text-white pt-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    &copy; 2026 - <strong>MotoStock</strong> - Nenhuma moto foi prejudicada na criação deste site.
+                </div>
+                <div class="col-md-6 text-end">
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-warning text-decoration-none">Sobre Nós</a> |
+                    <a asp-area="" asp-controller="Home" asp-action="PitStop" class="text-warning text-decoration-none">Pit Stop 🏍️</a>
+                </div>
+            </div>
+            <div class="text-center mt-2 small">
+                Oficina virtual • Stock real • Humor duvidoso
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

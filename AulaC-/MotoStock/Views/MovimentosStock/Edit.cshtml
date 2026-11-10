@@ -1,0 +1,121 @@
+@model MotoStock.ViewModels.MovimentoStockViewModel
+
+@{
+    ViewData["Title"] = "Editar Movimento";
+}
+
+<style>
+    .editar-movimento {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: #fff;
+        border-radius: 20px;
+        padding: 2rem;
+        border: 3px solid #f1c40f;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .editar-movimento h2 {
+        color: #f1c40f;
+    }
+    .form-control, .form-select {
+        background: rgba(255,255,255,0.9);
+        border: none;
+        border-radius: 8px;
+    }
+    .btn-guardar {
+        background: linear-gradient(45deg, #f39c12, #e67e22);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 1rem 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .btn-guardar:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="editar-movimento">
+        <h2>✏️ Editar Movimento de Stock</h2>
+        <p class="fst-italic">Vamos atualizar os dados deste movimento!</p>
+
+        <div class="piada-movimento mb-4">
+            <strong>😂 Piada:</strong><br>
+            Por que é que os movimentos de stock nunca se cansam?<br>
+            Porque estão sempre a "mover-se"! 🔄
+        </div>
+
+        <form asp-action="Edit" class="needs-validation" novalidate>
+            <input asp-for="Id" type="hidden" />
+            <div class="mb-4">
+                <label asp-for="MotocicletaId" class="form-label fw-bold">Motocicleta <span class="text-danger">*</span></label>
+                <select asp-for="MotocicletaId" asp-items="Model.Motocicletas" class="form-select"></select>
+                <span asp-validation-for="MotocicletaId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="TipoMovimento" class="form-label fw-bold">Tipo de Movimento <span class="text-danger">*</span></label>
+                <select asp-for="TipoMovimento" class="form-select">
+                    @foreach (var t in Enum.GetValues(typeof(MotoStock.Models.Enums.TipoMovimento)).Cast<MotoStock.Models.Enums.TipoMovimento>())
+                    {
+                        <option value="@((int)t)">@t</option>
+                    }
+                </select>
+                <span asp-validation-for="TipoMovimento" class="text-danger"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label asp-for="DataMovimento" class="form-label fw-bold">Data do Movimento <span class="text-danger">*</span></label>
+                    <input asp-for="DataMovimento" class="form-control" type="datetime-local" />
+                    <span asp-validation-for="DataMovimento" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label asp-for="Quantidade" class="form-label fw-bold">Quantidade <span class="text-danger">*</span></label>
+                    <input asp-for="Quantidade" class="form-control" />
+                    <span asp-validation-for="Quantidade" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Preco" class="form-label fw-bold">Preço (€)</label>
+                <input asp-for="Preco" class="form-control" />
+                <span asp-validation-for="Preco" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Motivo" class="form-label fw-bold">Motivo</label>
+                <input asp-for="Motivo" class="form-control" />
+                <span asp-validation-for="Motivo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="Observacoes" class="form-label fw-bold">Observações</label>
+                <textarea asp-for="Observacoes" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Observacoes" class="text-danger"></span>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn-guardar">💾 Guardar Alterações</button>
+                <a class="btn btn-outline-light" asp-action="Index">❌ Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .piada-movimento {
+        background: #e67e22;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 10px;
+        font-style: italic;
+        border-left: 5px solid #d35400;
+        max-width: 500px;
+    }
+</style>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
