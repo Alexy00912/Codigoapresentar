@@ -37,8 +37,9 @@ namespace MotoStock.Controllers
 
         public async Task<IActionResult> Create()
         {
-            await PopulateDropdowns();
-            return View();
+            var vm = new MotocicletaViewModel();
+            await PopulateDropdowns(vm);
+            return View(vm);
         }
 
         [HttpPost]
