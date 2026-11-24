@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MotoStock.Data;
 using MotoStock.Models;
+using MotoStock.Models.Enums;
 using MotoStock.ViewModels;
 
 namespace MotoStock.Controllers
@@ -34,8 +35,13 @@ namespace MotoStock.Controllers
 
         public async Task<IActionResult> Create()
         {
-            await PopulateDropdowns();
-            return View();
+            var vm = new MovimentoStockViewModel
+            {
+                DataMovimento = DateTime.Now,
+                TipoMovimento = TipoMovimento.Entrada
+            };
+            await PopulateDropdowns(vm);
+            return View(vm);
         }
 
         [HttpPost]

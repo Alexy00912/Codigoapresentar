@@ -87,7 +87,16 @@
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Nome)</td>
                         <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
-                        <td>@(item.Ativo ? "<span class='badge bg-success'>Ativa ✅</span>" : "<span class='badge bg-danger'>Inativa ❌</span>")</td>
+                        <td>
+                            @if (item.Ativo)
+                            {
+                                <span class="badge bg-success">Ativa ✅</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inativa ❌</span>
+                            }
+                        </td>
                         <td>
                             <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.Id">🔍 Detalhes</a>
                             <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id">✏️ Editar</a>
